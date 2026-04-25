@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================================
+  ZIP COMPARISON REPORT
+  File A : Appian_Student_Marks_Draggable_Table_FIXED.zip          (6,505 bytes)
+  File B : Sandhya Sandbox - Sail Components check - 2026-04-25_1427.zip
+                                                                   (6,917 bytes)
+  Both zips were extracted from the main branch of
+  mssandhya29/appian_sail_check.
+  Appian Version (both): 25.3.640.0
+  ============================================================================
+-->
+<zipDiffReport>
+
+  <!-- ======================================================================
+       1. ARCHIVE-LEVEL DIFFERENCES
+       ====================================================================== -->
+  <section id="1" title="Archive-Level Differences">
+
+    <difference id="1.1" category="FileSize">
+      <description>Total zip file size</description>
+      <fileA>6,505 bytes</fileA>
+      <fileB>6,917 bytes  (+412 bytes larger)</fileB>
+    </difference>
+
+    <difference id="1.2" category="DirectoryStructure">
+      <description>Internal folder layout</description>
+      <fileA>
+        <entry>appian_marks_fixed/patches.xml</entry>
+        <entry>appian_marks_fixed/META-INF/MANIFEST.MF</entry>
+        <entry>appian_marks_fixed/content/_a-0000ef91-f61d-8000-bad2-01ef9001ef91_1110217.xml</entry>
+      </fileA>
+      <fileB>
+        <entry>patches.xml</entry>
+        <entry>META-INF/MANIFEST.MF</entry>
+        <entry>META-INF/export.log  &lt;!-- ONLY in File B --&gt;</entry>
+        <entry>content/_a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110288.xml</entry>
+      </fileB>
+      <note>
+        File A wraps everything inside a subdirectory (appian_marks_fixed/).
+        File B places files at the archive root — standard Appian export layout.
+        File B also includes export.log which is absent from File A.
+      </note>
+    </difference>
+
+    <difference id="1.3" category="ExportTimestamp">
+      <description>MANIFEST.MF Created-On timestamp</description>
+      <fileA>2026-04-25T18:14:27.901Z</fileA>
+      <fileB>2026-04-25T18:27:34.649Z  (+13 minutes 7 seconds later)</fileB>
+    </difference>
+
+    <difference id="1.4" category="ExportLog">
+      <description>Presence of META-INF/export.log</description>
+      <fileA>ABSENT — no export log included</fileA>
+      <fileB>
+        PRESENT — records a successful export of 1 object:
+        content 135449  _a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110288
+        "SaS_DraggableSailComponents"
+        Also notes 1 referenced precedent NOT exported:
+        content 134567  3272fef1-8184-4037-a8aa-05a39bbda932  (parent folder)
+      </fileB>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       2. PATCHES.XML DIFFERENCES
+       ====================================================================== -->
+  <section id="2" title="patches.xml Differences">
+
+    <difference id="2.1" category="ObjectUUID">
+      <description>UUID of the exported content object</description>
+      <fileA>_a-0000ef91-f61d-8000-bad2-01ef9001ef91_1110217</fileA>
+      <fileB>_a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110288</fileB>
+      <note>
+        These are different Appian content objects (different numeric suffixes).
+        File A: content node suffix 1110217.
+        File B: content node suffix 1110288.
+      </note>
+    </difference>
+
+    <difference id="2.2" category="ApplicationUUID">
+      <description>applicationUuid in patches.xml</description>
+      <fileA>d9df0b8b-1a8f-401f-b82d-5fcaf3e9d5ec  (same)</fileA>
+      <fileB>d9df0b8b-1a8f-401f-b82d-5fcaf3e9d5ec  (same)</fileB>
+      <note>Both belong to the same Appian application.</note>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       3. CONTENT XML — ROOT ELEMENT AND FORMAT
+       ====================================================================== -->
+  <section id="3" title="Content XML Root Element and Format">
+
+    <difference id="3.1" category="XMLRootElement">
+      <description>Root XML element and schema</description>
+      <fileA>
+        &lt;content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="sailObject"
+                 version="25.3"
+                 uuid="_a-0000ef91-f61d-8000-bad2-01ef9001ef91_1110217"&gt;
+        — Lightweight SAIL object export format.
+        — SAIL definition wrapped in CDATA: &lt;definition&gt;&lt;![CDATA[...]]&gt;&lt;/definition&gt;
+        — Special characters (and, less-than, greater-than) are UNESCAPED inside CDATA.
+      </fileA>
+      <fileB>
+        &lt;contentHaul xmlns:a="http://www.appian.com/ae/types/2009"&gt;
+        — Full Appian content-haul export format (standard application export).
+        — SAIL definition in a plain &lt;definition&gt; element — NO CDATA.
+        — Special characters are XML-escaped: &amp;amp; &amp;lt; &amp;gt;
+      </fileB>
+    </difference>
+
+    <difference id="3.2" category="DefinitionEncoding">
+      <description>How the SAIL source is stored in XML</description>
+      <fileA>Inside CDATA block — raw SAIL, no XML escaping needed</fileA>
+      <fileB>
+        Inside plain XML element — every &amp; becomes &amp;amp;
+        every &lt; becomes &amp;lt; and every &gt; becomes &amp;gt;
+        Example:
+          File A:  value: local!classAvgPercent &amp; "%"
+          File B:  value: local!classAvgPercent &amp;amp; "%"
+      </fileB>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       4. CONTENT XML — OBJECT IDENTITY AND METADATA
+       ====================================================================== -->
+  <section id="4" title="Object Identity and Metadata">
+
+    <difference id="4.1" category="ObjectName">
+      <description>Name of the Appian interface object</description>
+      <fileA>student_marks_draggable_table</fileA>
+      <fileB>SaS_DraggableSailComponents</fileB>
+    </difference>
+
+    <difference id="4.2" category="Description">
+      <description>Object description field</description>
+      <fileA>Student Marks Table with Drag-and-Drop and Analytics</fileA>
+      <fileB>(empty string)</fileB>
+    </difference>
+
+    <difference id="4.3" category="MetadataFields">
+      <description>Metadata fields present in the content XML</description>
+      <fileA>
+        Minimal metadata:
+          &lt;n&gt;  (name)
+          &lt;description&gt;
+          &lt;topic/&gt;
+          &lt;dataType&gt;Any&lt;/dataType&gt;
+          &lt;definition&gt; (SAIL source)
+      </fileA>
+      <fileB>
+        Full metadata (15 additional fields):
+          &lt;versionUuid&gt;_a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110299&lt;/versionUuid&gt;
+          &lt;name&gt;SaS_DraggableSailComponents&lt;/name&gt;
+          &lt;uuid&gt;_a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110288&lt;/uuid&gt;
+          &lt;description&gt; (empty)
+          &lt;parentUuid&gt;3272fef1-8184-4037-a8aa-05a39bbda932&lt;/parentUuid&gt;
+          &lt;visibility&gt;
+              &lt;advertise&gt;false&lt;/advertise&gt;
+              &lt;hierarchy&gt;true&lt;/hierarchy&gt;
+              &lt;indexable&gt;true&lt;/indexable&gt;
+              &lt;quota&gt;false&lt;/quota&gt;
+              &lt;searchable&gt;true&lt;/searchable&gt;
+              &lt;system&gt;false&lt;/system&gt;
+              &lt;unlogged&gt;false&lt;/unlogged&gt;
+          &lt;/visibility&gt;
+          &lt;definition&gt; (SAIL source)
+          &lt;preferredEditor&gt;interface&lt;/preferredEditor&gt;
+          &lt;offlineEnabled&gt;false&lt;/offlineEnabled&gt;
+          &lt;isCustom&gt;false&lt;/isCustom&gt;
+          &lt;roleMap&gt; ... &lt;/roleMap&gt;  (6 roles — see section 5)
+          &lt;history&gt; ... &lt;/history&gt;
+      </fileB>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       5. CONTENT XML — ROLE MAP (only in File B)
+       ====================================================================== -->
+  <section id="5" title="Role Map (present only in File B)">
+
+    <difference id="5.1" category="RoleMap">
+      <description>Security role map for the interface object</description>
+      <fileA>NOT PRESENT — no roleMap in this export format</fileA>
+      <fileB>
+        &lt;roleMap public="true"&gt;
+          &lt;role inherit="true"  allowForAll="false" name="readers"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+          &lt;role inherit="true"  allowForAll="false" name="authors"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+          &lt;role inherit="true"  allowForAll="false" name="administrators"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+          &lt;role inherit="false" allowForAll="false" name="denyReaders"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+          &lt;role inherit="false" allowForAll="false" name="denyAuthors"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+          &lt;role inherit="false" allowForAll="false" name="denyAdministrators"&gt;
+              &lt;users/&gt;&lt;groups/&gt;
+          &lt;/role&gt;
+        &lt;/roleMap&gt;
+        All roles inherit from parent; no explicit users or groups assigned.
+        public="true" — viewable by all authenticated users.
+      </fileB>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       6. SAIL DEFINITION — FUNCTION NOTATION
+       ====================================================================== -->
+  <section id="6" title="SAIL Function Notation">
+
+    <difference id="6.1" category="FunctionSyntax">
+      <description>How Appian component functions are referenced in the SAIL</description>
+      <fileA>
+        Standard a! prefix notation (developer-authored source):
+          a!richTextDisplayField(...)
+          a!richTextItem(...)
+          a!sectionLayout(...)
+          a!columnsLayout(...)
+          a!columnLayout(...)
+          a!textField(...)
+          a!gridField(...)
+          a!gridColumn(...)
+      </fileA>
+      <fileB>
+        Compiled SYSTEM_SYSRULES notation (Appian internally resolved):
+          #"SYSTEM_SYSRULES_richTextDisplayField"(...)
+          #"SYSTEM_SYSRULES_richTextItem_v1"(...)
+          #"SYSTEM_SYSRULES_sectionLayout_v1"(...)
+          #"SYSTEM_SYSRULES_columnsLayout"(...)
+          #"SYSTEM_SYSRULES_columnLayout"(...)
+          #"SYSTEM_SYSRULES_textField"(...)
+          #"SYSTEM_SYSRULES_gridField_v4"(...)    &lt;!-- note: versioned _v4 --&gt;
+          #"SYSTEM_SYSRULES_gridColumn"(...)
+        Note: a!map() inside grid data sections STILL uses a! prefix in File B.
+      </fileB>
+      <note>
+        File A is a hand-authored / manually packaged export.
+        File B was exported through Appian Designer which resolves all a! aliases
+        to their internal SYSTEM_SYSRULES identifiers and version-locks
+        components (e.g., gridField_v4).
+      </note>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       7. SAIL DEFINITION — FUNCTIONAL DIFFERENCES IN THE CODE
+       ====================================================================== -->
+  <section id="7" title="SAIL Code Functional Differences">
+
+    <difference id="7.1" category="RichTextItemStyle">
+      <description>
+        style parameter for non-topper richTextItem cells
+        (Math, Science, English, Hindi, Social, Avg % columns)
+      </description>
+      <fileA>style: if(fv!row.rank = 1, "STRONG", "NORMAL")</fileA>
+      <fileB>style: if(fv!row.rank = 1, "STRONG", "PLAIN")</fileB>
+      <note>
+        "NORMAL" and "PLAIN" are both valid Appian style values for plain text,
+        but "PLAIN" is the canonical Appian-preferred value as serialised by
+        Appian Designer. "NORMAL" is accepted as an alias.
+      </note>
+    </difference>
+
+    <difference id="7.2" category="CodeFormatting">
+      <description>Inline vs expanded a!map() field formatting</description>
+      <fileA>
+        Compact single-line map style:
+          a!map(id: 1, rollNo: "S001", name: "Arjun Kumar",
+                math: 85, science: 78, ...)
+      </fileA>
+      <fileB>
+        Expanded one-field-per-line style (Appian Designer auto-format):
+          a!map(
+            id: 1,
+            rollNo: "S001",
+            name: "Arjun Kumar",
+            math: 85,
+            science: 78,
+            ...)
+      </fileB>
+    </difference>
+
+    <difference id="7.3" category="StringConcatenation">
+      <description>String concatenation operator encoding</description>
+      <fileA>Raw &amp; operator inside CDATA:  value: local!x &amp; "%"</fileA>
+      <fileB>XML-escaped in element body:      value: local!x &amp;amp; "%"</fileB>
+      <note>Functionally identical — difference is only in XML serialisation.</note>
+    </difference>
+
+    <difference id="7.4" category="ComparisonOperators">
+      <description>Less-than / greater-than operator encoding</description>
+      <fileA>Raw operators inside CDATA:
+        if(fv!row.math &lt; 60, ...)
+        if(fv!row.total &gt;= 400, ...)
+      </fileA>
+      <fileB>XML-escaped in element body:
+        if(fv!row.math &amp;lt; 60, ...)
+        if(fv!row.total &amp;gt;= 400, ...)
+      </fileB>
+      <note>Functionally identical — difference is only in XML serialisation.</note>
+    </difference>
+
+  </section>
+
+  <!-- ======================================================================
+       8. SUMMARY TABLE
+       ====================================================================== -->
+  <section id="8" title="Summary of All Differences">
+    <summaryTable>
+
+      <row>
+        <attribute>Zip size</attribute>
+        <fileA>6,505 bytes</fileA>
+        <fileB>6,917 bytes</fileB>
+      </row>
+      <row>
+        <attribute>Internal directory prefix</attribute>
+        <fileA>appian_marks_fixed/ (subdirectory)</fileA>
+        <fileB>Root level</fileB>
+      </row>
+      <row>
+        <attribute>export.log present</attribute>
+        <fileA>No</fileA>
+        <fileB>Yes</fileB>
+      </row>
+      <row>
+        <attribute>Export timestamp</attribute>
+        <fileA>2026-04-25T18:14:27.901Z</fileA>
+        <fileB>2026-04-25T18:27:34.649Z</fileB>
+      </row>
+      <row>
+        <attribute>Content UUID</attribute>
+        <fileA>…ef91_1110217</fileA>
+        <fileB>…ef90_1110288</fileB>
+      </row>
+      <row>
+        <attribute>Object name</attribute>
+        <fileA>student_marks_draggable_table</fileA>
+        <fileB>SaS_DraggableSailComponents</fileB>
+      </row>
+      <row>
+        <attribute>Description</attribute>
+        <fileA>Student Marks Table with Drag-and-Drop and Analytics</fileA>
+        <fileB>(empty)</fileB>
+      </row>
+      <row>
+        <attribute>XML root element</attribute>
+        <fileA>&lt;content xsi:type="sailObject"&gt;</fileA>
+        <fileB>&lt;contentHaul&gt;</fileB>
+      </row>
+      <row>
+        <attribute>SAIL encoding in XML</attribute>
+        <fileA>CDATA block (raw)</fileA>
+        <fileB>Plain element (XML-escaped)</fileB>
+      </row>
+      <row>
+        <attribute>SAIL function notation</attribute>
+        <fileA>a! prefix (developer source)</fileA>
+        <fileB>#"SYSTEM_SYSRULES_..." (compiled)</fileB>
+      </row>
+      <row>
+        <attribute>gridField version</attribute>
+        <fileA>a!gridField (unversioned)</fileA>
+        <fileB>#"SYSTEM_SYSRULES_gridField_v4"</fileB>
+      </row>
+      <row>
+        <attribute>richTextItem style (non-topper)</attribute>
+        <fileA>"NORMAL"</fileA>
+        <fileB>"PLAIN"</fileB>
+      </row>
+      <row>
+        <attribute>roleMap</attribute>
+        <fileA>Not present</fileA>
+        <fileB>Present (6 roles, all inherited, public=true)</fileB>
+      </row>
+      <row>
+        <attribute>visibility block</attribute>
+        <fileA>Not present</fileA>
+        <fileB>Present (advertise=false, searchable=true, etc.)</fileB>
+      </row>
+      <row>
+        <attribute>parentUuid</attribute>
+        <fileA>Not present</fileA>
+        <fileB>3272fef1-8184-4037-a8aa-05a39bbda932</fileB>
+      </row>
+      <row>
+        <attribute>versionUuid</attribute>
+        <fileA>Not present</fileA>
+        <fileB>_a-0000ef91-f61d-8000-bad2-01ef9001ef90_1110299</fileB>
+      </row>
+      <row>
+        <attribute>preferredEditor</attribute>
+        <fileA>Not present</fileA>
+        <fileB>interface</fileB>
+      </row>
+      <row>
+        <attribute>offlineEnabled</attribute>
+        <fileA>Not present</fileA>
+        <fileB>false</fileB>
+      </row>
+      <row>
+        <attribute>isCustom</attribute>
+        <fileA>Not present</fileA>
+        <fileB>false</fileB>
+      </row>
+      <row>
+        <attribute>history element</attribute>
+        <fileA>Not present</fileA>
+        <fileB>Present (versionUuid reference)</fileB>
+      </row>
+      <row>
+        <attribute>Functionally equivalent SAIL logic</attribute>
+        <fileA>Yes — same student data, same grid structure</fileA>
+        <fileB>Yes — same student data, same grid structure</fileB>
+      </row>
+
+    </summaryTable>
+  </section>
+
+</zipDiffReport>
